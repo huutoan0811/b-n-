@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c5ee584bbd469403e5e28b75c59ce734 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.1.2/dist/leaflet-ant-path.min.js"></script>
+</head>
+<body>
+    
+    
+<div style="position: fixed; 
+     top: 10px; left: 50px; 
+     z-index: 1000; 
+     padding: 10px; 
+     background: rgba(255,255,255,0.8);
+     color: black;
+     border-radius: 5px;
+     font-size: 14px;">
+    <b>Vietnam to Hamburg Maritime Routes</b>
+    <hr style="margin: 5px 0;">
+    <div style="display: flex; flex-wrap: wrap;">
+        <div style="margin-right: 15px;">🇻🇳 → 🇸🇬/🇲🇾 → 🇱🇰 → 🇪🇬 → 🇲🇦🇪🇸 → 🇩🇪</div>
+    </div>
+</div>
+    
+<div style="position: fixed; 
+     bottom: 50px; left: 50px; 
+     z-index: 1000; 
+     padding: 10px; 
+     background: rgba(255,255,255,0.8);
+     color: black;
+     border-radius: 5px;
+     font-size: 12px;">
+    <b>Route Legend</b><br>
+    <span style="color: #00ccff;">— Main Suez Route</span><br>
+    <span style="color: #ff66cc;">— Malaysia Focus</span><br>
+    <span style="color: #ffff33;">— Colombo Alternative</span>
+</div>
+    
+            <div class="folium-map" id="map_c5ee584bbd469403e5e28b75c59ce734" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c5ee584bbd469403e5e28b75c59ce734 = L.map(
+                "map_c5ee584bbd469403e5e28b75c59ce734",
+                {
+                    center: [25.0, 50.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 3,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_5992ba02a35ec7f2aeb4270dc2759e42 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_5992ba02a35ec7f2aeb4270dc2759e42.addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            ant_path_6bdaa555e75505d91d074a471014d4c1 = L.polyline.antPath(
+              [[10.5, 107.5], [8.0, 105.0], [5.0, 102.0], [1.3, 103.8], [0.5, 98.0], [6.9, 79.8], [12.0, 45.0], [15.0, 42.0], [22.0, 38.0], [30.6, 32.3], [34.0, 30.0], [37.0, 10.0], [36.1, -5.4], [40.0, -10.0], [50.0, -5.0], [51.5, 1.5], [53.5, 9.0], [53.5, 10.0]],
+              {
+  "stroke": true,
+  "color": "#00ccff",
+  "weight": 5,
+  "opacity": 0.8,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "#00ccff",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 1000,
+  "pulseColor": "#00ccff",
+}
+        ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            ant_path_6bdaa555e75505d91d074a471014d4c1.bindTooltip(
+                `<div>
+                     Route 1 - Main Suez Route
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_58e1f37d31e9d996d67a68940918cb8f = L.polyline.antPath(
+              [[10.5, 107.5], [4.5, 104.5], [3.1, 101.6], [6.9, 79.8], [12.0, 45.0], [15.0, 42.0], [30.6, 32.3], [36.1, -5.4], [45.0, -3.0], [51.5, 1.5], [53.5, 10.0]],
+              {
+  "stroke": true,
+  "color": "#ff66cc",
+  "weight": 5,
+  "opacity": 0.8,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "#ff66cc",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 1000,
+  "pulseColor": "#ff66cc",
+}
+        ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            ant_path_58e1f37d31e9d996d67a68940918cb8f.bindTooltip(
+                `<div>
+                     Route 2 - Malaysia Focus
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_c572636453a9d45ea7d001b017c60073 = L.polyline.antPath(
+              [[10.5, 107.5], [1.3, 103.8], [5.0, 90.0], [8.0, 81.0], [6.9, 79.8], [12.0, 45.0], [30.6, 32.3], [36.1, -5.4], [45.0, -8.0], [51.5, 1.5], [53.5, 10.0]],
+              {
+  "stroke": true,
+  "color": "#ffff33",
+  "weight": 5,
+  "opacity": 0.8,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "#ffff33",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 1000,
+  "pulseColor": "#ffff33",
+}
+        ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            ant_path_c572636453a9d45ea7d001b017c60073.bindTooltip(
+                `<div>
+                     Route 3 - Colombo Alternative
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_996d144b7ec6863054259d076db9cdf0 = L.marker(
+                [10.5, 107.5],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var icon_cb7cc74244d80e3ec2b4d2f703a8933d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a488192f90337e54d4fd6f718aaa32fe = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6ba6c93b6ca42129c2e4d16320f16195 = $(`<div id="html_6ba6c93b6ca42129c2e4d16320f16195" style="width: 100.0%; height: 100.0%;">Cai Mep, Vietnam 🇻🇳</div>`)[0];
+                popup_a488192f90337e54d4fd6f718aaa32fe.setContent(html_6ba6c93b6ca42129c2e4d16320f16195);
+            
+        
+
+        marker_996d144b7ec6863054259d076db9cdf0.bindPopup(popup_a488192f90337e54d4fd6f718aaa32fe)
+        ;
+
+        
+    
+    
+                marker_996d144b7ec6863054259d076db9cdf0.setIcon(icon_cb7cc74244d80e3ec2b4d2f703a8933d);
+            
+    
+            var marker_71f261c039a33cde43f459966cad48f3 = L.marker(
+                [1.3, 103.8],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var icon_8555f4493627318fbae8228ca8f826cb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_65772081fc04f619739bd6dcab4d1e5e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1941b1c86a52527bdb21ce0730711990 = $(`<div id="html_1941b1c86a52527bdb21ce0730711990" style="width: 100.0%; height: 100.0%;">Singapore 🇸🇬</div>`)[0];
+                popup_65772081fc04f619739bd6dcab4d1e5e.setContent(html_1941b1c86a52527bdb21ce0730711990);
+            
+        
+
+        marker_71f261c039a33cde43f459966cad48f3.bindPopup(popup_65772081fc04f619739bd6dcab4d1e5e)
+        ;
+
+        
+    
+    
+                marker_71f261c039a33cde43f459966cad48f3.setIcon(icon_8555f4493627318fbae8228ca8f826cb);
+            
+    
+            var marker_5fb22e1ec6b40c2d502a9597023e6503 = L.marker(
+                [3.1, 101.6],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var icon_40bbfe6333298d30cbee9a4a189e4b7e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7ef9c67ddbc1ab3d79efcc124da9b86f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9e07d8bdd81b17feed2ef79725587850 = $(`<div id="html_9e07d8bdd81b17feed2ef79725587850" style="width: 100.0%; height: 100.0%;">Port Klang, Malaysia 🇲🇾</div>`)[0];
+                popup_7ef9c67ddbc1ab3d79efcc124da9b86f.setContent(html_9e07d8bdd81b17feed2ef79725587850);
+            
+        
+
+        marker_5fb22e1ec6b40c2d502a9597023e6503.bindPopup(popup_7ef9c67ddbc1ab3d79efcc124da9b86f)
+        ;
+
+        
+    
+    
+                marker_5fb22e1ec6b40c2d502a9597023e6503.setIcon(icon_40bbfe6333298d30cbee9a4a189e4b7e);
+            
+    
+            var marker_8b391692f648cbc76b00a0b385c43841 = L.marker(
+                [6.9, 79.8],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var icon_cb022dfc8401f371aedfc723bef4f248 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_243bf7907199d89a509ebfc9c7f6dd8c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_76052820e0c3d4a300dc41c93b7c5686 = $(`<div id="html_76052820e0c3d4a300dc41c93b7c5686" style="width: 100.0%; height: 100.0%;">Colombo, Sri Lanka 🇱🇰</div>`)[0];
+                popup_243bf7907199d89a509ebfc9c7f6dd8c.setContent(html_76052820e0c3d4a300dc41c93b7c5686);
+            
+        
+
+        marker_8b391692f648cbc76b00a0b385c43841.bindPopup(popup_243bf7907199d89a509ebfc9c7f6dd8c)
+        ;
+
+        
+    
+    
+                marker_8b391692f648cbc76b00a0b385c43841.setIcon(icon_cb022dfc8401f371aedfc723bef4f248);
+            
+    
+            var marker_d0724aae4f7cb58bdd01c2f185455764 = L.marker(
+                [30.6, 32.3],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var icon_449f9fd23c4be6e8a9fca749a4723655 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0f49e8ebed5296352fbee4780ab7cc62 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_28cd81acdc81012b673b65fe23fc836a = $(`<div id="html_28cd81acdc81012b673b65fe23fc836a" style="width: 100.0%; height: 100.0%;">Suez Canal 🇪🇬</div>`)[0];
+                popup_0f49e8ebed5296352fbee4780ab7cc62.setContent(html_28cd81acdc81012b673b65fe23fc836a);
+            
+        
+
+        marker_d0724aae4f7cb58bdd01c2f185455764.bindPopup(popup_0f49e8ebed5296352fbee4780ab7cc62)
+        ;
+
+        
+    
+    
+                marker_d0724aae4f7cb58bdd01c2f185455764.setIcon(icon_449f9fd23c4be6e8a9fca749a4723655);
+            
+    
+            var marker_223a3baae7a4057ad946e78f1bef6a17 = L.marker(
+                [36.1, -5.4],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var icon_d974227b53d65483539828595ce0e061 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a790d4d7bfee9b332e8a464051e0d23c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5918a0f4b507ddea4cf11f980fbab5cb = $(`<div id="html_5918a0f4b507ddea4cf11f980fbab5cb" style="width: 100.0%; height: 100.0%;">Gibraltar 🇲🇦🇪🇸</div>`)[0];
+                popup_a790d4d7bfee9b332e8a464051e0d23c.setContent(html_5918a0f4b507ddea4cf11f980fbab5cb);
+            
+        
+
+        marker_223a3baae7a4057ad946e78f1bef6a17.bindPopup(popup_a790d4d7bfee9b332e8a464051e0d23c)
+        ;
+
+        
+    
+    
+                marker_223a3baae7a4057ad946e78f1bef6a17.setIcon(icon_d974227b53d65483539828595ce0e061);
+            
+    
+            var marker_0dd223530e12041d63887aafa273493c = L.marker(
+                [51.5, 1.5],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var icon_692a3fada7a4c65569fb42f0a0f9f470 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_efc77f6d8129603c8a3058e3bf1bc789 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_11c6e030c009c68b593f972c8d60a41b = $(`<div id="html_11c6e030c009c68b593f972c8d60a41b" style="width: 100.0%; height: 100.0%;">English Channel</div>`)[0];
+                popup_efc77f6d8129603c8a3058e3bf1bc789.setContent(html_11c6e030c009c68b593f972c8d60a41b);
+            
+        
+
+        marker_0dd223530e12041d63887aafa273493c.bindPopup(popup_efc77f6d8129603c8a3058e3bf1bc789)
+        ;
+
+        
+    
+    
+                marker_0dd223530e12041d63887aafa273493c.setIcon(icon_692a3fada7a4c65569fb42f0a0f9f470);
+            
+    
+            var marker_5aa7afcf822dc0f7e2e33fcc867c2b76 = L.marker(
+                [53.5, 10.0],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var icon_ea7bc06b3c1b5e69edb0c23287fed174 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b0b8ee6e36ee1bdfae3545d8a9cf67db = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9d4fed6b9bd902cdc359b0ee0bacf777 = $(`<div id="html_9d4fed6b9bd902cdc359b0ee0bacf777" style="width: 100.0%; height: 100.0%;">Hamburg 🇩🇪</div>`)[0];
+                popup_b0b8ee6e36ee1bdfae3545d8a9cf67db.setContent(html_9d4fed6b9bd902cdc359b0ee0bacf777);
+            
+        
+
+        marker_5aa7afcf822dc0f7e2e33fcc867c2b76.bindPopup(popup_b0b8ee6e36ee1bdfae3545d8a9cf67db)
+        ;
+
+        
+    
+    
+                marker_5aa7afcf822dc0f7e2e33fcc867c2b76.setIcon(icon_ea7bc06b3c1b5e69edb0c23287fed174);
+            
+    
+            var marker_1109bbc61a857a2fb41d585b6b9bb108 = L.marker(
+                [15.0, 110.0],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var div_icon_e44f4ac43c5170b59f439e278712d040 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14px; color: blue;\"\u003eSouth China Sea\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "className": "empty",
+});
+        
+    
+                marker_1109bbc61a857a2fb41d585b6b9bb108.setIcon(div_icon_e44f4ac43c5170b59f439e278712d040);
+            
+    
+            var marker_4bd4eb3ac5fb531a18140d45769df0c4 = L.marker(
+                [10.0, 80.0],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var div_icon_4072ea60904c208c6a9e90ff910aa115 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14px; color: blue;\"\u003eIndian Ocean\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "className": "empty",
+});
+        
+    
+                marker_4bd4eb3ac5fb531a18140d45769df0c4.setIcon(div_icon_4072ea60904c208c6a9e90ff910aa115);
+            
+    
+            var marker_e47ee6b04390e098db8fef4dddf240c0 = L.marker(
+                [35.0, 18.0],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var div_icon_547c0c46718f4b5398c334e105a3db0f = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14px; color: blue;\"\u003eMediterranean Sea\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "className": "empty",
+});
+        
+    
+                marker_e47ee6b04390e098db8fef4dddf240c0.setIcon(div_icon_547c0c46718f4b5398c334e105a3db0f);
+            
+    
+            var marker_2f2ff472b740ff8c07a847a9e8e3e3ad = L.marker(
+                [30.0, -20.0],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var div_icon_00ddba05aec164c44c06602f52a0ca58 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14px; color: blue;\"\u003eAtlantic Ocean\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "className": "empty",
+});
+        
+    
+                marker_2f2ff472b740ff8c07a847a9e8e3e3ad.setIcon(div_icon_00ddba05aec164c44c06602f52a0ca58);
+            
+    
+            var marker_640bb07f1b777065a00253e70b6533f3 = L.marker(
+                [55.0, 3.0],
+                {
+}
+            ).addTo(map_c5ee584bbd469403e5e28b75c59ce734);
+        
+    
+            var div_icon_a4bf161a5560e254183ea4ee6424b5fc = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14px; color: blue;\"\u003eNorth Sea\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "className": "empty",
+});
+        
+    
+                marker_640bb07f1b777065a00253e70b6533f3.setIcon(div_icon_a4bf161a5560e254183ea4ee6424b5fc);
+            
+</script>
+</html>
